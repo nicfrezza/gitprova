@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 2000;
+const port = 1000;
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -26,6 +26,17 @@ app.get('/:id', (req,res) => {
         res.status(404).send('Item não encontrado');
     }
 });
+
+//POST
+app.post('/',(req,res) => {
+    const novoItem  = req.body;
+
+    lista.push(novoItem)
+
+    res.status(201).send('Item adicionado com sucesso!');
+})
+
+
 
 
 //lista
