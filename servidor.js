@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 1000;
+const port = 4000;
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -37,6 +37,20 @@ app.post('/',(req,res) => {
 })
 
 
+app.put('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const itemAtualizado = req.body;
+
+    const itemIndex = lista.findIndex(item => item.id === id);
+
+  if (itemIndex !== -1) {
+     
+        lista[itemIndex] = { ...lista[itemIndex], ...itemAtualizado };
+        res.send('Item atualizadao com sucesso!');
+    } else {
+        res.status(404).send('Item não encontrado');
+    }
+});
 
 
 //lista
