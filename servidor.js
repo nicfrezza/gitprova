@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 4000;
+const port = 9000;
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -51,6 +51,23 @@ app.put('/:id', (req, res) => {
         res.status(404).send('Item não encontrado');
     }
 });
+
+
+
+//delete/pessoas/id
+app.delete('/:id', (req,res) => {
+    const id = parseInt(req.params.id);
+
+    const itemIndex = lista.findIndex(item => item.id === id);
+
+    if (itemIndex !== -1) {
+        lista.splice(itemIndex, 1);
+        res.send("Item removido com sucesso");
+    } else {
+        res.status(404).send("Item não encontrado");
+    }
+});
+
 
 
 //lista
